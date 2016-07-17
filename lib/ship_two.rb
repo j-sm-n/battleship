@@ -1,0 +1,3 @@
+class ShipTwo < Ship
+
+end

@@ -1,0 +1,3 @@
+class ShipThree < Ship 
+
+end
