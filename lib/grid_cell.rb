@@ -12,4 +12,12 @@ class GridCell
     @status = status
     @ships = ships
   end
+
+  def hit
+    @status = :hit
+  end
+
+  def miss
+    @status = :miss
+  end
 end
