@@ -28,4 +28,18 @@ class GridCellTest < Minitest::Test
 
     assert_equal :miss, grid.status
   end
+
+  def test_shot_is_a_miss
+    grid = GridCell.new
+    grid.miss
+
+    assert_equal "M", grid.shot_result
+  end
+
+  def test_shot_is_a_hit
+    grid = GridCell.new
+    grid.hit
+
+    assert_equal "H", grid.shot_result
+  end
 end

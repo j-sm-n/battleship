@@ -20,4 +20,9 @@ class GridCell
   def miss
     @status = :miss
   end
+
+  # will add colorize conditional below later
+  def shot_result
+    FILL_CHAR[@status]
+  end
 end
