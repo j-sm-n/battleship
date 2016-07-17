@@ -1,4 +1,4 @@
-require './grid_cell'
+require './lib/grid_cell'
 
 class Board
   attr_reader :grid
