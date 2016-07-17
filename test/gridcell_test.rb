@@ -12,5 +12,4 @@ class GridCellTest < Minitest::Test
     grid = GridCell.new
     assert_equal nil, grid.ships
   end
-
 end
