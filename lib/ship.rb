@@ -6,7 +6,7 @@ class Ship
   attr_reader   :length
 
   def initialize
-  	@hits = 0
+    @hits = 0
   end
 
   def hit
