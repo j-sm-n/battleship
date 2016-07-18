@@ -16,4 +16,8 @@ class Ship
   def sunk?
     @length == @hits
   end
+
+  def opppenent_ship
+    @fill_char
+  end
 end
