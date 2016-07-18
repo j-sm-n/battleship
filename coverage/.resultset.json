@@ -1,19 +1,35 @@
 {
   "Unit Tests": {
     "coverage": {
-      "/Users/artemis/turing/1module/projects/battleship/lib/board.rb": [
+      "/Users/artemis/turing/1module/projects/battleship/lib/ship_two.rb": [
+        1,
+        null,
+        1,
+        null,
+        1,
+        2,
+        2,
+        null,
+        null
+      ],
+      "/Users/artemis/turing/1module/projects/battleship/lib/ship.rb": [
         1,
         null,
         1,
         1,
         null,
-        null,
         1,
         null,
+        1,
+        2,
         null,
         null,
         1,
-        62,
+        3,
+        null,
+        null,
+        1,
+        2,
         null,
         null
       ],
@@ -29,8 +45,8 @@
         null,
         null,
         1,
-        50,
-        50,
+        0,
+        0,
         null,
         null,
         1,
@@ -48,6 +64,6 @@
         null
       ]
     },
-    "timestamp": 1468796177
+    "timestamp": 1468860915
   }
 }
