@@ -3,6 +3,10 @@ require './lib/ship_two'
 require './lib/ship_three'
 
 class Player
+  attr_reader :board,
+              :ship_two,
+              :ship_three,
+              :ships_left
 
   def initialize
     @board      = Board.new

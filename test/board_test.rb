@@ -17,4 +17,5 @@ class BoardTest < Minitest::Test
 
     assert_equal :open, board.grid[0][0].status
   end
+
 end
