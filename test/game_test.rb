@@ -6,9 +6,9 @@ require './lib/game'
 
 class GameTest < Minitest::Test
 
-  def test_it_can_randomly_set_opponent
+  def test_opponent_has_valid_coordinates_in_queue
     game = Game.new
 
-    assert_equal Array?, game.set_opponent
+    assert game.set_opponent.all? { |coordinate| "ABCDE" && 12345}
   end
 end

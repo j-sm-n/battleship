@@ -18,4 +18,11 @@ class BoardTest < Minitest::Test
     assert_equal :open, board.grid[0][0].status
   end
 
+  def test_it_can_check_coordinates
+    skip
+    board = Board.new
+    ship = ShipTwo.new
+
+    assert board.valid_coordinates?(ship, 'a1', 'a2')
+  end
 end

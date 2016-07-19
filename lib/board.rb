@@ -1,4 +1,6 @@
 require './lib/grid_cell'
+require './lib/ship_two'
+require './lib/ship_three'
 
 class Board
   attr_reader :grid
@@ -25,8 +27,8 @@ class Board
     end
     puts "==========="
   end
-end
 
-board = Board.new
-board.dispaly_board
-puts board.grid[0][0].status
+  def valid_coordinates?(ship, first_cord, second_cord)
+    true
+  end
+end
