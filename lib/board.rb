@@ -14,6 +14,10 @@ class Board
     @grid = Array.new(BOARD_DIM).map! {Array.new(BOARD_DIM).map! {GridCell.new}}
   end
 
+  def place_ships
+
+  end
+
   def dispaly_board
     row_letter = ('A'..'Z').to_a
     counter = 0
@@ -28,10 +32,7 @@ class Board
     puts "=========="
   end
 
-  def valid_coordinates?(ship, first_cord, second_cord)
-    true
-  end
+  # def valid_coordinates?(ship, first_cord, second_cord)
+  #   if ship.length ==
+  # end
 end
-
-board = Board.new
-board.dispaly_board

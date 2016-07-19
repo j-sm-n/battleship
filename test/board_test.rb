@@ -18,6 +18,22 @@ class BoardTest < Minitest::Test
     assert_equal :open, board.grid[0][0].status
   end
 
+  def test_it_can_keep_ships_from_overlapping
+    board = Board.new
+    sm_ship = ShipTwo.new
+    lg_ship = ShipThree.new
+
+    assert check_clearance?()
+  end
+
+  def test_board_can_place_ships
+    skip
+    board = Board.new
+    sm_ship = ShipTwo.new
+
+    assert_equal board.grid[:row, :column]
+  end
+
   def test_it_can_check_coordinates
     skip
     board = Board.new

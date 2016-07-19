@@ -1,4 +1,5 @@
 require './lib/player'
+require 'pry'
 
 class Game
   FLEET = [
@@ -19,10 +20,6 @@ class Game
     play_rounds
   end
 
-  def play_rounds
-    # method to keep track of rounds and who wins/loses
-  end
-
   def set_opponent
     @opponent = Player.new
     @opp_targeting_queue = []
@@ -36,5 +33,34 @@ class Game
 
   def set_player
     @player = Player.new
+  end
+
+  def deploy_opp_ship(opponent, ship)
+    position = {}
+    valid = false
+    while valid == false
+      orientation = [:horizonatal, :vertical].sample
+      if orientation == :horizonatal
+        rows = Board::ROW
+        columns = Board::COLUMN[0..3 - opponent.send(ship).length]
+      else
+        rows = Board::ROW[0..3 - opponent.send(ship).length]
+        columns = Board::COLUMN
+      end
+
+      position[:row] = Board::ROW.rindex(rows.sample)
+      position[:column] = Board::COLUMN.rindex(columns.sample)
+
+      if opponent.board.valid_coordinates?(opponent.send(ship), positon, orientation) && opponent.board.check_clearance?(opponent.send(ship), positon, orientation)
+        valid = true
+        opponent.board.place_ship(opponent.send(ship), positon, orientation)
+      end
+    end
+  end
+
+# binding.pry
+
+  def play_rounds
+    # method to keep track of rounds and who wins/loses
   end
 end
