@@ -22,7 +22,15 @@ class GridCell
   end
 
   # will add colorize conditional below later
-  def shot_result
-    FILL_CHAR[@status]
+  def shot_result_to_s
+    if @ship && @status != :hit
+      @ship.to_s
+    elsif @status == :hit
+      FILL_CHAR[@status]
+    elsif @status == :miss
+      FILL_CHAR[@status]
+    else
+      FILL_CHAR[@status]
+    end      
   end
 end

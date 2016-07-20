@@ -44,16 +44,17 @@ class BoardTest < Minitest::Test
     skip
     board = Board.new
     sm_ship = ShipTwo.new
-    sm_start_position = {:row => 0, :column => 0}
+    position = {:row => 0, :column => 0}
 
     assert_equal
   end
 
-  def test_it_can_check_coordinates
-    skip
+  def test_it_can_check_coordinates_are_on_board
     board = Board.new
     ship = ShipTwo.new
+    position = {:row => 3, :column => 1}
+    orientation = :vertical
 
-    assert board.valid_coordinates?(ship, 'a1', 'a2')
+    refute board.valid_coordinates?(ship, position, orientation)
   end
 end

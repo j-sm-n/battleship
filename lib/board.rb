@@ -1,7 +1,7 @@
 require './lib/grid_cell'
 require './lib/ship_two'
 require './lib/ship_three'
-require './lib/game'
+# require './lib/game'
 require 'pry'
 
 class Board
@@ -31,9 +31,13 @@ class Board
     return true
   end
 
-  # def valid_coordinates?(ship, first_cord, second_cord)
-  #   if orientation ==
-  # end
+  def valid_coordinates?(ship, start_position, orientation)
+    if orientation == :horizontal
+      (start_position[:column] + ship.length) <= BOARD_DIM
+    else
+      (start_position[:row] + ship.length) <= BOARD_DIM
+    end
+  end
 
   def place_ship(ship, start_position, orientation)
     row = start_position[:row]
@@ -59,11 +63,10 @@ class Board
     puts ". 1 2 3 4"
     @grid.each do |row|
       print row_letter[counter] + ' '
-      row.each {|cell| print cell.to_s + ' '}
+      row.each {|cell| print cell.shot_result_to_s + ' '}
       print "\n"
       counter += 1
     end
     puts "=========="
   end
-
 end
