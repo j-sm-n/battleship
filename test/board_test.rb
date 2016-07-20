@@ -9,7 +9,7 @@ class BoardTest < Minitest::Test
   def test_new_board_has_no_ships
     board = Board.new
 
-    assert_equal nil, board.grid[0][0].ships
+    assert_equal nil, board.grid[0][0].ship
   end
 
   def test_new_board_is_open
@@ -22,16 +22,31 @@ class BoardTest < Minitest::Test
     board = Board.new
     sm_ship = ShipTwo.new
     lg_ship = ShipThree.new
+    sm_start_position = {:row => 0, :column => 0}
+    board.place_ship(sm_ship, sm_start_position, :horizontal)
+    lg_start_position = {:row => 0, :column => 0}
 
-    assert check_clearance?()
+    refute board.check_clearance?(lg_ship, lg_start_position, :vertical)
+  end
+
+  def test_check_clearance_can_be_true
+    board = Board.new
+    sm_ship = ShipTwo.new
+    lg_ship = ShipThree.new
+    sm_start_position = {:row => 0, :column => 0}
+    board.place_ship(sm_ship, sm_start_position, :horizontal)
+    lg_start_position = {:row => 1, :column => 0}
+
+    assert board.check_clearance?(lg_ship, lg_start_position, :vertical)
   end
 
   def test_board_can_place_ships
     skip
     board = Board.new
     sm_ship = ShipTwo.new
+    sm_start_position = {:row => 0, :column => 0}
 
-    assert_equal board.grid[:row, :column]
+    assert_equal
   end
 
   def test_it_can_check_coordinates

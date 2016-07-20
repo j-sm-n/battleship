@@ -4,7 +4,7 @@ class ShipThree < Ship
 
   def initialize
     @length = 3
-    @fill_char = " "
+    @fill_char = "+"
     super
   end
 end

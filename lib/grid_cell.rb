@@ -1,6 +1,6 @@
 class GridCell
-  attr_reader :status,
-              :ships
+  attr_accessor :status,
+                :ship
 
   FILL_CHAR = {
               :open => " ",
@@ -8,9 +8,9 @@ class GridCell
               :miss => "M"
             }
 
-  def initialize(status = :open, ships = nil)
+  def initialize(status = :open, ship = nil)
     @status = status
-    @ships = ships
+    @ship = ship
   end
 
   def hit

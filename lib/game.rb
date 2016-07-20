@@ -3,8 +3,8 @@ require 'pry'
 
 class Game
   FLEET = [
-          :ship_two,
-          :ship_three
+          :ship_length_two,
+          :ship_length_three
         ]
 
   def play
@@ -12,7 +12,7 @@ class Game
     set_opponent
     puts "I have laid out my ships on the grid.\nYou now need to layout your two ships.\nThe first is two units long and the\nsecond is three units long.\nThe grid has A1 at the top left and D4 at the bottom right.\n\nEnter the squares for the two-unit ship:"
     FLEET.each do |ship|
-      deploy_ship(@player, ship)
+      deploy_player_ship(@player, ship)
     end
     FLEET.each do |ship|
       deploy_opp_ship(@opponent, ship)
@@ -33,6 +33,10 @@ class Game
 
   def set_player
     @player = Player.new
+  end
+
+  def deploy_player_ship
+
   end
 
   def deploy_opp_ship(opponent, ship)

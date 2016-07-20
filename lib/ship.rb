@@ -17,7 +17,7 @@ class Ship
     @length == @hits
   end
 
-  def opppenent_ship
+  def to_s
     @fill_char
   end
 end

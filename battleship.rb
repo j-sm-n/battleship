@@ -8,7 +8,8 @@ case player_input
 when "p", "play"
   # initialize new Game instance
   puts "Let's play!"
-  Game.new
+  game = Game.new
+  game.play
 when "i", "instructions"
   # puts instructions and return to original game start prompt
   puts "Here are the instructions"

@@ -1,6 +1,8 @@
 require './lib/grid_cell'
 require './lib/ship_two'
 require './lib/ship_three'
+require './lib/game'
+require 'pry'
 
 class Board
   attr_reader :grid
@@ -14,9 +16,41 @@ class Board
     @grid = Array.new(BOARD_DIM).map! {Array.new(BOARD_DIM).map! {GridCell.new}}
   end
 
-  def place_ships
-
+  def check_clearance?(ship, start_position, orientation)
+    row = start_position[:row]
+    column = start_position[:column]
+    ship.length.times do
+      if self.grid[row][column].ship
+        return false
+      elsif orientation == :horizontal
+        column += 1
+      else
+        row +=1
+      end
+    end
+    return true
   end
+
+  # def valid_coordinates?(ship, first_cord, second_cord)
+  #   if orientation ==
+  # end
+
+  def place_ship(ship, start_position, orientation)
+    row = start_position[:row]
+    column = start_position[:column]
+    ship.length.times do
+      if orientation == :horizontal
+        self.grid[row][column].ship = ship
+        self.grid[row][column].status = :occupied
+        column += 1
+      else
+        self.grid[row][column].ship = ship
+        self.grid[row][column].status = :occupied
+        row += 1
+      end
+    end
+  end
+  # binding.pry
 
   def dispaly_board
     row_letter = ('A'..'Z').to_a
@@ -32,7 +66,4 @@ class Board
     puts "=========="
   end
 
-  # def valid_coordinates?(ship, first_cord, second_cord)
-  #   if ship.length ==
-  # end
 end
