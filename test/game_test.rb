@@ -1,7 +1,4 @@
-require 'simplecov'
-SimpleCov.start
-require 'minitest/autorun'
-require 'minitest/pride'
+require './test/test_helper'
 require './lib/game'
 
 class GameTest < Minitest::Test
@@ -22,5 +19,15 @@ class GameTest < Minitest::Test
     game.deploy_opp_ship(opponent, ship)
 
     assert_eqaul 2, game.position.length
+  end
+
+  def test_player_can_enter_coordinates
+    skip
+    game = Game.new
+    player = Player.new
+    sm_ship = ShipTwo.new
+    input = "a1 a2"
+    expected = ['A','1','A','2']
+    assert_equal expected, game.deploy_player_ship
   end
 end

@@ -1,7 +1,4 @@
-require 'simplecov'
-SimpleCov.start
-require 'minitest/autorun'
-require 'minitest/pride'
+require './test/test_helper'
 require './lib/ship'
 
 class ShipTest < Minitest::Test
