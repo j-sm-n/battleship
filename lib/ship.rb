@@ -1,9 +1,8 @@
 require './lib/grid_cell'
 
 class Ship
-  attr_accessor :hits
-
-  attr_reader   :length
+  attr_accessor :hits,
+                :length
 
   def initialize
     @hits = 0

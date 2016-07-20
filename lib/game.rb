@@ -3,19 +3,18 @@ require 'pry'
 
 class Game
   FLEET = [
-          :ship_length_two,
-          :ship_length_three
+          :ship_two,
+          :ship_three
         ]
 
   def play
     set_player
     set_opponent
-    puts "I have laid out my ships on the grid.\nYou now need to layout your two ships.\nThe first is two units long and the\nsecond is three units long.\nThe grid has A1 at the top left and D4 at the bottom right.\n\nEnter the squares for the two-unit ship:"
-    FLEET.each do |ship|
-      deploy_player_ship(@player, ship)
-    end
     FLEET.each do |ship|
       deploy_opp_ship(@opponent, ship)
+    end
+    FLEET.each do |ship|
+      deploy_player_ship(@player, ship)
     end
     play_rounds
   end
@@ -35,10 +34,6 @@ class Game
     @player = Player.new
   end
 
-  def deploy_player_ship
-
-  end
-
   def deploy_opp_ship(opponent, ship)
     position = {}
     valid = false
@@ -55,13 +50,34 @@ class Game
       position[:row] = Board::ROW.rindex(rows.sample)
       position[:column] = Board::COLUMN.rindex(columns.sample)
 
-      if opponent.board.valid_coordinates?(opponent.send(ship), positon, orientation) && opponent.board.check_clearance?(opponent.send(ship), positon, orientation)
+      if opponent.board.valid_coordinates?(opponent.send(ship), position, orientation) && opponent.board.check_clearance?(opponent.send(ship), positon, orientation)
         valid = true
-        opponent.board.place_ship(opponent.send(ship), positon, orientation)
+        opponent.board.place_ship(opponent.send(ship), position, orientation)
       end
     end
   end
 
+  def deploy_player_ship
+    valid = false
+    while valid == false do
+      print "\n"
+      player.board.dispaly_board
+      position_one, position_two = {}, {}
+      while valid == false do
+        print "I have laid out my ships on the grid.\nYou now need to layout your two ships.\nThe first is two units long and the\nsecond is three units long.\nThe grid has A1 at the top left and D4 at the bottom right.\n\nEnter the squares for the two-unit ship:"
+        input = gets.chomp.delete(" ").upcase
+        position_one[:row] = Board::ROW.rindex(input.split(//, 4)[0])
+        position_one[:column] = Board::COLUMN.rindex(input.split(//, 4)[1])
+        position_two[:row] = Board::ROW.rindex(input.split(//, 4)[2])
+        position_one[:column] = Board::COLUMN.rindex(input.split(//, 4)[3])
+        if !position_one[:row].nil? && !position_one[:column].nil? && !position_two[:row].nil? && !position_two[:column].nil?
+          valid = true
+        else
+          puts "Invalid cooridnates."
+        end
+      end
+    end
+  end
 # binding.pry
 
   def play_rounds

@@ -23,4 +23,10 @@ class ShipThreeTest < Minitest::Test
     assert_equal 2, player_ship.hits
     refute player_ship.sunk?
   end
+
+  def test_ship_marker
+    ship = ShipThree.new
+
+    assert_equal "+", ship.to_s
+  end
 end

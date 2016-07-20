@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/grid_cell'
@@ -12,7 +14,7 @@ class GridCellTest < Minitest::Test
   def test_it_starts_with_no_ships
     grid = GridCell.new
 
-    assert_equal nil, grid.ships
+    assert_equal nil, grid.ship
   end
 
   def test_if_ship_hit_status_is_now_hit
