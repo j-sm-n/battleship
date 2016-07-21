@@ -69,7 +69,7 @@ class Game
         puts "\n\nI have laid out my ships on the grid.\nYou now need to layout your two ships.\nThe first is two units long and the\nsecond is three units long.\nThe grid has A1 at the top left and D4 at the bottom right.\n\n"
         puts "Enter the squares for the #{ship} ship: "
         input = gets.chomp.delete(" ").upcase
-        if input[0] == input[2] 
+        if input[0] == input[2]
           orientation = :horizontal
         else
           orientation = :vertical
@@ -80,28 +80,30 @@ class Game
         # position_one[:column] = Board::COLUMN.rindex(input.split(//, 4)[3])
         if !position_one[:row].nil? && !position_one[:column].nil?
         # && !position_two[:row].nil? && !position_two[:column].nil?
-        valid = true
+          valid = true
         else
           puts "Invalid cooridnates."
         end
       end
       valid = false
-		if player.board.valid_coordinates?(player.send(ship), position_one, orientation) &&
-			 player.board.check_clearance?(player.send(ship), position_one, orientation)
-			player.board.place_ship(player.send(ship), position_one, orientation)
-			valid = true
-		else
-			puts "Invalid position for ship."
-		end
+      valid_placement?(player.send(ship), position_one, orientation, valid)
     end
   end
 # binding.pry
+  def valid_placement?(player, position, orientation, valid)
+    if player.board.valid_coordinates?(player.send(ship), position_one, orientation) && player.board.check_clearance?(player.send(ship), position_one, orientation)
+      player.board.place_ship(player.send(ship), position_one, orientation)
+      valid = true
+    else
+      puts "Invalid position for ship."
+    end
+  end
 
   def play_rounds
     # method to keep track of rounds and who wins/loses
     game_over = false
     while game_over == false
-      @player.board.dispaly_board
+      @player.print_player_board
       player_round
       if @opponent.ships_left == 0
         winner = "Player"

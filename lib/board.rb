@@ -5,7 +5,7 @@ require './lib/ship_three'
 require 'pry'
 
 class Board
-  attr_reader :grid
+  attr_accessor :grid
 
   NUM_SHIPS = 2
   BOARD_DIM = 4

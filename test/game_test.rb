@@ -17,7 +17,7 @@ class GameTest < Minitest::Test
     sm_ship = ShipTwo.new
     game.deploy_opp_ship(opponent, sm_ship)
 
-    assert_equal 2, game.position.length
+    assert !position[:row].nil?
   end
 
   def test_player_can_enter_coordinates
@@ -36,6 +36,6 @@ class GameTest < Minitest::Test
     opponent = Player.new
     opponent.ships_left == 0
 
-    assert_equal "Player", game.play_rounds.winner
+    assert_equal "Player", game.play_rounds
   end
 end
