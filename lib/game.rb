@@ -1,4 +1,5 @@
 require './lib/player'
+require './lib/feedback'
 require 'pry'
 
 class Game
@@ -16,6 +17,7 @@ class Game
     FLEET.each do |ship|
       deploy_player_ship(@player, ship)
     end
+    puts "\n\nTime to sink some ships! Good luck!\n\n"
     play_rounds
   end
 
@@ -50,23 +52,24 @@ class Game
       position[:row] = Board::ROW.rindex(rows.sample)
       position[:column] = Board::COLUMN.rindex(columns.sample)
 
-      if opponent.board.valid_coordinates?(opponent.send(ship), position, orientation) && opponent.board.check_clearance?(opponent.send(ship), positon, orientation)
+      if opponent.board.valid_coordinates?(opponent.send(ship), position, orientation) && opponent.board.check_clearance?(opponent.send(ship), position, orientation)
         valid = true
         opponent.board.place_ship(opponent.send(ship), position, orientation)
       end
     end
   end
 
-  def deploy_player_ship
+  def deploy_player_ship(player, ship)
     valid = false
     while valid == false do
       print "\n"
       player.board.dispaly_board
       position_one = {}
       while valid == false do
-        print "I have laid out my ships on the grid.\nYou now need to layout your two ships.\nThe first is two units long and the\nsecond is three units long.\nThe grid has A1 at the top left and D4 at the bottom right.\n\nEnter the squares for the two-unit ship:"
+        puts "\n\nI have laid out my ships on the grid.\nYou now need to layout your two ships.\nThe first is two units long and the\nsecond is three units long.\nThe grid has A1 at the top left and D4 at the bottom right.\n\n"
+        puts "Enter the squares for the #{ship} ship: "
         input = gets.chomp.delete(" ").upcase
-        if input[0] == input[2]
+        if input[0] == input[2] 
           orientation = :horizontal
         else
           orientation = :vertical
@@ -83,12 +86,12 @@ class Game
         end
       end
       valid = false
-		if player.board.valid_coordinates?(player.send(ship), position, orientation) &&
-			 player.board.check_clearance?(player.send(ship), position, orientation)
-			player.board.place_ship(player.send(ship), position, orientation)
+		if player.board.valid_coordinates?(player.send(ship), position_one, orientation) &&
+			 player.board.check_clearance?(player.send(ship), position_one, orientation)
+			player.board.place_ship(player.send(ship), position_one, orientation)
 			valid = true
 		else
-			puts "Invalid position for ship.".colorize(:yellow)
+			puts "Invalid position for ship."
 		end
     end
   end
@@ -96,6 +99,22 @@ class Game
 
   def play_rounds
     # method to keep track of rounds and who wins/loses
-    
+    game_over = false
+    while game_over == false
+      @player.board.dispaly_board
+      player_round
+      if @opponent.ships_left == 0
+        winner = "Player"
+        game_over = true
+        next
+      end
+      @opponent.board.dispaly_board
+      opponent_round
+      if @player.ships_left == 0
+        winner = "Opponent"
+        game_over = true
+      end
+    end
+    puts "\n\n#{winner} WINS!\n\n"
   end
 end

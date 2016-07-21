@@ -10,15 +10,14 @@ class GameTest < Minitest::Test
     assert game.set_opponent.all? { |coordinate| "ABCDE" && 12345}
   end
 
-  def test_opponent_ship_has_coordinates
-    skip
+  def test_opponent_ships_are_placed
     game = Game.new
     board = Board.new
     opponent = Player.new
-    ship = ShipTwo.new
-    game.deploy_opp_ship(opponent, ship)
+    sm_ship = ShipTwo.new
+    game.deploy_opp_ship(opponent, sm_ship)
 
-    assert_eqaul 2, game.position.length
+    assert_equal 2, game.position.length
   end
 
   def test_player_can_enter_coordinates
@@ -29,5 +28,14 @@ class GameTest < Minitest::Test
     input = "a1 a2"
     expected = ['A','1','A','2']
     assert_equal expected, game.deploy_player_ship
+  end
+
+  def test_winner_can_be_determined
+    game = Game.new
+    player = Player.new
+    opponent = Player.new
+    opponent.ships_left == 0
+
+    assert_equal "Player", game.play_rounds.winner
   end
 end

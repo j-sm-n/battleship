@@ -2,10 +2,12 @@ require './lib/grid_cell'
 
 class Ship
   attr_accessor :hits,
-                :length
+                :length,
+                :name
 
   def initialize
     @hits = 0
+    @name = name
   end
 
   def hit
