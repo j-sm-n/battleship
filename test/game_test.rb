@@ -5,6 +5,7 @@ class GameTest < Minitest::Test
 
   def test_opponent_has_valid_coordinates_in_queue
     # this test sucks, re-do!
+    skip
     game = Game.new
 
     assert game.set_opponent.all? { |coordinate| "ABCDE" && 12345}
@@ -37,5 +38,12 @@ class GameTest < Minitest::Test
     opponent.ships_left == 0
 
     assert_equal "Player", game.play_rounds
+  end
+
+  def test_new_game_sets_opponenet
+    game = Game.new
+    game.play
+
+    assert_instance_of Player, game.set_opponent
   end
 end

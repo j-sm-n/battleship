@@ -3,6 +3,12 @@ require './lib/ship_two'
 
 class ShipTwoTest < Minitest::Test
 
+  def test_new_ship_has_length_of_two
+    ship = ShipTwo.new
+
+    assert_equal 2, ship.length
+  end
+
   def test_ship_can_be_sunk
     player_ship = ShipTwo.new
     player_ship.hit

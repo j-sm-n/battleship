@@ -86,11 +86,11 @@ class Game
         end
       end
       valid = false
-      valid_placement?(player.send(ship), position_one, orientation, valid)
+      valid_placement?(player.send(ship), position_one, orientation)
     end
   end
 # binding.pry
-  def valid_placement?(player, position, orientation, valid)
+  def valid_placement?(player, position, orientation)
     if player.board.valid_coordinates?(player.send(ship), position_one, orientation) && player.board.check_clearance?(player.send(ship), position_one, orientation)
       player.board.place_ship(player.send(ship), position_one, orientation)
       valid = true

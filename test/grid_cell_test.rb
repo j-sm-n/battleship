@@ -32,13 +32,19 @@ class GridCellTest < Minitest::Test
     grid = GridCell.new
     grid.miss
 
-    assert_equal "M", grid.shot_result
+    assert_equal "M", grid.shot_result_to_s
   end
 
   def test_shot_is_a_hit
     grid = GridCell.new
     grid.hit
 
-    assert_equal "H", grid.shot_result
+    assert_equal "H", grid.shot_result_to_s
+  end
+
+  def test_cell_displays_as_empty
+    grid = GridCell.new
+
+    assert_equal " ", grid.shot_result_to_s
   end
 end

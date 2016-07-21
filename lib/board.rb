@@ -1,7 +1,6 @@
 require './lib/grid_cell'
 require './lib/ship_two'
 require './lib/ship_three'
-# require './lib/game'
 require 'pry'
 
 class Board

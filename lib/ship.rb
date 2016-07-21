@@ -7,7 +7,6 @@ class Ship
 
   def initialize
     @hits = 0
-    @name = name
   end
 
   def hit
